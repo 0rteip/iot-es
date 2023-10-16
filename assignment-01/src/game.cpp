@@ -172,7 +172,7 @@ void sleep()
 
 void generateSquence()
 {
-    if (gameScore == 0)
+    if (!gameScore)
     {
         for (int i = 0; i < BUTTS_NUMBER; i++)
         {
