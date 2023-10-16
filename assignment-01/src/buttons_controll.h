@@ -5,6 +5,8 @@
 #ifndef __BUTTONS_CONTROLL__
 #define __BUTTONS_CONTROLL__
 
+#define DEBOUNCE_DELAY 160 // in ms
+
 /**
  * Buttons initialization.
  */

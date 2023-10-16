@@ -7,8 +7,6 @@
 #include "io_conf.h"
 #include "buttons_controll.h"
 
-#define DEBOUNCE_DELAY 160 // in ms
-
 int buttons[] = {BUTT_1, BUTT_2, BUTT_3, BUTT_4};
 int buttonsPressed[BUTTS_NUMBER];
 unsigned long lastIntTime[BUTTS_NUMBER];
