@@ -10,8 +10,7 @@ unsigned long enterTime;
 
 void initTime()
 {
-    gameTime = 0;
-    enterTime = millis();
+    resetGameTime();
 }
 
 void incrementGameTime()
