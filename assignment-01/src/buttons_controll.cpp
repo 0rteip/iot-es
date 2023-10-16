@@ -34,10 +34,10 @@ void buttonPressed4()
     buttonPressed(3);
 }
 
-void (*buttonPressedFunctions[])(void) = {buttonPressed1, buttonPressed2, buttonPressed3, buttonPressed4};
-
 void initButtons()
 {
+    void (*buttonPressedFunctions[])(void) = {buttonPressed1, buttonPressed2, buttonPressed3, buttonPressed4};
+
     for (int butt = 0; butt < BUTTS_NUMBER; butt++)
     {
         pinMode(buttons[butt], INPUT);
