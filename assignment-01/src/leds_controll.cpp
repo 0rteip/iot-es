@@ -13,7 +13,6 @@ unsigned long lastFade = 0;
 
 // leds variables
 int leds[] = {LED_1, LED_2, LED_3, LED_4};
-int ledsStatus[LEDS_NUMBER];
 int currLed = 0;
 
 void initLed()
