@@ -6,8 +6,6 @@
 #include "io_conf.h"
 #include "leds_controll.h"
 
-#define FADE_DELAY 2 // in ms
-
 // pulsing led variables
 int mod = 1;
 int intensity = 0;

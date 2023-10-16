@@ -5,6 +5,8 @@
 #ifndef __LEDS_CONTROLL__
 #define __LEDS_CONTROLL__
 
+#define FADE_DELAY 2 // in ms
+
 /**
  * Led initialization.
  */
