@@ -72,11 +72,8 @@ int *getButtonsStatus()
 
 void restoreButtonsStatus()
 {
-    for (int butt = 0; butt < BUTTS_NUMBER; butt++)
-    {
-        buttonsPressed[butt] = 0;
-        pressSeq[butt] = 0;
-    }
+    memset(buttonsPressed, 0, sizeof(buttonsPressed));
+    memset(pressSeq, 0, sizeof(pressSeq));
     pressCounter = 0;
 }
 
