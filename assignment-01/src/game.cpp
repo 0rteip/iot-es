@@ -5,22 +5,21 @@
 #include <Arduino.h>
 #include <avr/sleep.h>
 #include <time.h>
-#include <leds_controll.h>
+#include "leds_controll.h"
 #include "time_controll.h"
 #include "io_conf.h"
 #include "buttons_controll.h"
 #include "pot_controll.h"
 #include "game.h"
 
-int gameScore = 0;
-int gameDiff = 1;
+int gameScore;
+int gameDiff;
 int gameStatus = GAME_INTRO;
 
-int seqCounter = 0;
+int seqCounter;
 int sequence[BUTTS_NUMBER];
 
-float reducingTime = 0;
-int gameRestartTime = 10;
+float reducingTime;
 
 void generateSquence();
 
@@ -31,6 +30,7 @@ void gameIntro()
     turnAllOff();
     fadeLed();
     restoreButtonsStatus();
+    gameDiff = 0;
     Serial.println("Welcome to the Restore the Light Game. Press Key B1 to Start");
 
     initTime();
@@ -46,6 +46,7 @@ void gameWaitStart()
     if (hasStartButtonBeenPressed())
     {
         gameScore = 0;
+        reducingTime = 0;
         setGameStatus(GAME_INIT);
     }
     checkDifficultyLevel();
@@ -101,7 +102,7 @@ void gamePlaying()
 
 void gameEnd()
 {
-    if (getGameTime() >= 10 * SEC_MILLIS)
+    if (getGameTime() >= T_RESTART)
     {
         setGameStatus(GAME_INTRO);
     }
