@@ -43,8 +43,6 @@ void turnAllOff()
 
 void turnOffLed(int led)
 {
-  Serial.print("Turn off led: ");
-  Serial.println(led);
   digitalWrite(leds[led], LOW);
 }
 

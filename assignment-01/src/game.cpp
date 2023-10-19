@@ -130,8 +130,6 @@ void gameResult()
     {
         gameScore++;
         reducingTime = gameScore * BASE_DIFF_FACTOR * gameDiff;
-        Serial.print("Red time: ");
-        Serial.println(reducingTime);
         Serial.print("New point! Score: ");
         setGameStatus(GAME_INIT);
     }
@@ -179,7 +177,7 @@ void generateSquence()
         {
             sequence[i] = i;
         }
-        srand(time(0));
+        srand(time(NULL));
     }
     for (int i = BUTTS_NUMBER - 1; i > 0; i--)
     {
