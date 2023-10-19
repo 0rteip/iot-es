@@ -19,7 +19,9 @@ void setup()
 
     Serial.begin(9600);
 
+#ifdef __TEST__
     testLed();
+#endif
 }
 
 void loop()
