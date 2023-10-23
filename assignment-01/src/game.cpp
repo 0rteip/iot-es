@@ -20,6 +20,7 @@ int seqCounter;
 int sequence[BUTTS_NUMBER];
 
 float reducingTime;
+int highRound;
 
 void generateSquence();
 
@@ -31,7 +32,7 @@ void gameIntro()
     fadeLed();
     restoreButtonsStatus();
     gameDiff = 0;
-    Serial.println("Welcome to the Restore the Light Game. Press Key B1 to Start");
+    Serial.println("\nWelcome to the Restore the Light Game. Press Key B1 to Start");
 
     initTime();
     setGameStatus(GAME_WAIT_START);
@@ -47,6 +48,8 @@ void gameWaitStart()
     {
         gameScore = 0;
         reducingTime = 0;
+        highRound = 0;
+        Serial.println("Starting Game...");
         setGameStatus(GAME_INIT);
     }
     checkDifficultyLevel();
@@ -55,6 +58,7 @@ void gameWaitStart()
 
 void gameInit()
 {
+    Serial.println("Round " + String(gameScore + 1));
     turnAllOff();
     setGameStatus(GAME_GENERATE_SEQUENCE);
 }
@@ -77,7 +81,7 @@ void gamePrep()
 
 void gameShowSequence()
 {
-    if (getGameTime() >= T_TWO - reducingTime * SEC_MILLIS)
+    if (getGameTime() >= T_TWO - reducingTime)
     {
         turnOffLed(sequence[seqCounter++]);
         resetGameTime();
@@ -94,7 +98,7 @@ void gamePlaying()
 {
     turnOnArray(getButtonsStatus());
 
-    if (areAllButtonsPressed() || getGameTime() >= T_THREE - reducingTime * SEC_MILLIS)
+    if (areAllButtonsPressed() || getGameTime() >= T_THREE - reducingTime)
     {
         gameResult();
     }
@@ -129,7 +133,15 @@ void gameResult()
     if (!end)
     {
         gameScore++;
-        reducingTime = gameScore * BASE_DIFF_FACTOR * gameDiff;
+        if (!highRound)
+        {
+            reducingTime = gameScore * BASE_DIFF_FACTOR * gameDiff * SEC_MILLIS;
+            if (T_TWO - reducingTime <= T_MIN)
+            {
+                reducingTime = T_TWO - T_MIN;
+                highRound = 1;
+            }
+        }
         Serial.print("New point! Score: ");
         setGameStatus(GAME_INIT);
     }
@@ -177,11 +189,11 @@ void generateSquence()
         {
             sequence[i] = i;
         }
-        srand(time(NULL));
+        randomSeed(analogRead(A0));
     }
     for (int i = BUTTS_NUMBER - 1; i > 0; i--)
     {
-        int j = rand() % (i + 1);
+        int j = random() % (i + 1);
         int temp = sequence[i];
         sequence[i] = sequence[j];
         sequence[j] = temp;
