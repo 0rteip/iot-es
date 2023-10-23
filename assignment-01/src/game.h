@@ -5,8 +5,8 @@
 #ifndef __GAME_H__
 #define __GAME_H__
 
-#define DIFF_LEVELS 4           // number of difficulty levels
-#define BASE_DIFF_FACTOR 0.1    // base difficulty factor
+#define DIFF_LEVELS 4          // number of difficulty levels
+#define BASE_DIFF_FACTOR 0.075 // base difficulty factor
 
 #define GAME_INTRO 0
 #define GAME_WAIT_START 1
