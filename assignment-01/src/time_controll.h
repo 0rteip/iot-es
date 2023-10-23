@@ -5,17 +5,17 @@
 #ifndef __TIME_CONTROLL__
 #define __TIME_CONTROLL__
 
-#define SEC 1000000               // microseconds
-#define SEC_MILLIS 1000           // milliseconds
-#define T_ONE 3 * SEC_MILLIS      // seconds - time to remain on
-#define T_TWO 2 * SEC_MILLIS      // seconds - turning off time
-#define T_THREE 10 * SEC_MILLIS   // seconds - player game time
-#define T_RESTART 10 * SEC_MILLIS // seconds - time to restart the game
+#define SEC_MILLIS 1000 // milliseconds
+#define T_ONE 3000      // milliseconds - time leds are on
+#define T_TWO 2000      // milliseconds - turning off time
+#define T_THREE 6000    // milliseconds - player game time
+#define T_RESTART 10000 // milliseconds - time to restart the game
+#define T_MIN 100       // milliseconds - minimum turning off time
 
-#ifdef __TEST__
-#define T_SLEEP 30 * SEC_MILLIS // seconds - time before sleep
+#ifndef __TEST__
+#define T_SLEEP 10000 // milliseconds - time before sleep
 #else
-#define T_SLEEP 10 * SEC_MILLIS   // seconds - time before sleep
+#define T_SLEEP 30000 // milliseconds - time before sleep
 #endif
 
 /**
@@ -24,7 +24,7 @@
 void initTime();
 
 /**
- * This functtion is called every second to increment the game time.
+ * This functtion is called to increment the game time.
  */
 void incrementGameTime();
 
